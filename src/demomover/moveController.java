@@ -66,7 +66,11 @@ public class moveController {
 
 	@FXML
 	void move(ActionEvent event) {
-		Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString());
+		Move.demoScanner(selectedCsgoDirectory.toString());
+		System.out.println("DONE");
+	//System.out.println(Move.demoFilesScanned.length);
+	//	Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString());
+
 	}
 
 }
