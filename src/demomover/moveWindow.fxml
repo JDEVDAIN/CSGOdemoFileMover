@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="demomover.moveController">
+<AnchorPane xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demomover.moveController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="226.0" prefWidth="325.0">
         <children>
@@ -46,6 +45,14 @@
                         <Insets left="5.0" />
                      </padding>
                   </Label>
+                   <Button fx:id="informationButton" onAction="#showInformation" layoutX="261.0" layoutY="23.0" minHeight="0.0" minWidth="49.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="49.0" style="-fx-background-color: #306c82;" text="Info" textFill="#d6d6d6" underline="true">
+               <padding>
+                  <Insets top="1.0" />
+               </padding>
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
+            </Button>
             </children>
           </AnchorPane>
         </children>

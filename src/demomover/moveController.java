@@ -4,6 +4,8 @@ import java.io.File;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
@@ -17,7 +19,9 @@ public class moveController {
 	private Label csgoDirLabel;
 	@FXML
 	private Button startButton;
-
+	@FXML
+	private Button informationButton;
+	
 	@FXML
 	void chooseCsgoDir(ActionEvent event) {
 
@@ -64,6 +68,17 @@ public class moveController {
 		}
 	}
 
+	@FXML
+	void showInformation(ActionEvent event) {
+		//works
+		//TODO styling 
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText("Look, an Information Dialog");
+		alert.setContentText("I have a great message for you!");
+
+		alert.showAndWait();
+	}
 	@FXML
 	void move(ActionEvent event) {
 		Move.demoScanner(selectedCsgoDirectory.toString());
