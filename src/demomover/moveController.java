@@ -90,9 +90,13 @@ public class moveController {
 		Move.demoScanner(selectedCsgoDirectory.toString());
 		System.out.println("DONE");
 		 Stage stage = new Stage();
-         stage.setTitle("My New Stage Title");
+         stage.setTitle("Continue?");
+         
+         
          AnchorPane mainAnchorPane = (AnchorPane) FXMLLoader.load(MoverFxGui.class.getResource("moveConfirm.fxml"));
-         stage.setScene(new Scene(mainAnchorPane, 283, 159)); //TODO check for borders
+         stage.setScene(new Scene(mainAnchorPane, 283, 155)); //TODO check for borders
+      //   ConfirmController.moveInfo.setText(Move.infoForConfirm); //TODO doesnt work make it work
+         System.out.println(Move.infoForConfirm);
          stage.show();
 		
 	//System.out.println(Move.demoFilesScanned.length);

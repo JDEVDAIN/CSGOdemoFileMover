@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 
 public class Move {
 	static int numberOfDemoFiles;
-
+	static String infoForConfirm;
 	static File[] demoFilesScanned;
 	static double demoFilesSize = 0L;
 	static double demoFilesSizeInGb;
@@ -38,11 +38,13 @@ public class Move {
 				e.printStackTrace();
 			}
 		}
-		demoFilesSizeInGb = (((demoFilesSize / 1024) / 1024) / 1024);  
-																		
+		demoFilesSizeInGb = (((demoFilesSize / 1024) / 1024) / 1024);
+		infoForConfirm= new String(demoFilesScanned.length + " Demos found, which are using \n "
+				+ round(demoFilesSizeInGb, 2) + " GB of Storage");
+		
 		System.out.println(demoFilesScanned.length + " Demos found, which are using ");
 
-		System.out.println( round(demoFilesSizeInGb, 2) + " GB of Storage"); //rounded now
+		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
 
 	}
 
@@ -78,12 +80,13 @@ public class Move {
 		}
 		System.out.println("Done with moving .dem files");
 	}
-	
-	public static double round(double value, int places) {
-	    if (places < 0) throw new IllegalArgumentException();
 
-	    BigDecimal bd = new BigDecimal(value);
-	    bd = bd.setScale(places, RoundingMode.HALF_UP);
-	    return bd.doubleValue();
+	public static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+
+		BigDecimal bd = new BigDecimal(value);
+		bd = bd.setScale(places, RoundingMode.HALF_UP);
+		return bd.doubleValue();
 	}
 }

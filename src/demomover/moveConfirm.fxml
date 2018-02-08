@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="154.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demomover.confirmController">
+<AnchorPane prefHeight="154.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demomover.ConfirmController">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="283.0">
         <children>
@@ -28,7 +28,7 @@
                         <DropShadow color="#2e3c22" height="25.0" radius="12.0" spread="0.39" width="25.0" />
                      </effect>
                   </Button>
-                  <Label fx:id="moveInfo" alignment="TOP_LEFT" layoutX="11.0" layoutY="15.0" prefHeight="57.0" prefWidth="261.0" style="-fx-background-color: #242c3a;" text="dwerwerwer" textFill="#a1a1a1" wrapText="true">
+                  <Label fx:id="moveInfo" alignment="TOP_LEFT" layoutX="11.0" layoutY="15.0" prefHeight="57.0" prefWidth="261.0" style="-fx-background-color: #242c3a;" text="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST " textFill="#a1a1a1" wrapText="true">
                      <effect>
                         <InnerShadow height="9.0" radius="3.25" width="6.0" />
                      </effect>
@@ -39,13 +39,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ProgressBar fx:id="loadingBar" layoutX="14.0" layoutY="119.0" opacity="0.63" prefHeight="25.0" prefWidth="132.0" progress="0.0" />
-                  <Button fx:id="noButton" layoutX="221.0" layoutY="115.0" mnemonicParsing="false" onAction="#cancel" prefHeight="33.0" prefWidth="51.0" style="-fx-background-color: #600707;" text="No" textFill="#abaaaa">
+                  <Button fx:id="noButton" layoutX="221.0" layoutY="115.0" mnemonicParsing="false" onAction="#noAction" prefHeight="33.0" prefWidth="51.0" style="-fx-background-color: #6b020f;" text="No" textFill="#ababab">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" layoutX="154.0" layoutY="77.0" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: #242c3a;" text="Continue?" textAlignment="CENTER" textFill="#a1a1a1" underline="true">
+                  <Label fx:id="wantToContinue" alignment="CENTER" layoutX="154.0" layoutY="77.0" prefHeight="33.0" prefWidth="117.0" style="-fx-background-color: #242c3a;" text="Continue?" textAlignment="CENTER" textFill="#a1a1a1" underline="true">
                      <effect>
                         <InnerShadow height="9.0" radius="3.25" width="6.0" />
                      </effect>
@@ -56,6 +55,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <ProgressBar fx:id="loadingBar" layoutX="14.0" layoutY="99.0" opacity="0.63" prefHeight="23.0" prefWidth="128.0" progress="0.0" />
             </children>
           </AnchorPane>
         </children>
