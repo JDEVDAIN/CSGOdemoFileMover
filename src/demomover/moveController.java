@@ -1,14 +1,20 @@
 package demomover;
 
 import java.io.File;
+import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 
 public class moveController {
 	File selectedCsgoDirectory;
@@ -58,7 +64,7 @@ public class moveController {
 		if (selectedTargetDirectory == null) {
 			targetDirLabel.setText("No Directory selected");
 		} else {
-			targetDirLabel.setText(selectedTargetDirectory.getAbsolutePath());
+		targetDirLabel.setText(selectedTargetDirectory.getAbsolutePath());
 
 		}
 		if (selectedCsgoDirectory != null && selectedTargetDirectory != null) {
@@ -79,12 +85,18 @@ public class moveController {
 
 		alert.showAndWait();
 	}
-	@FXML
-	void move(ActionEvent event) {
+	@FXML //startbutton
+	void move(ActionEvent event) throws IOException {
 		Move.demoScanner(selectedCsgoDirectory.toString());
 		System.out.println("DONE");
+		 Stage stage = new Stage();
+         stage.setTitle("My New Stage Title");
+         AnchorPane mainAnchorPane = (AnchorPane) FXMLLoader.load(MoverFxGui.class.getResource("moveConfirm.fxml"));
+         stage.setScene(new Scene(mainAnchorPane, 283, 159)); //TODO check for borders
+         stage.show();
+		
 	//System.out.println(Move.demoFilesScanned.length);
-	//	Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString());
+	//	Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString()); //TODO move in right class 
 
 	}
 
