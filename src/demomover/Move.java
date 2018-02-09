@@ -13,6 +13,7 @@ public class Move {
 	static File[] demoFilesScanned;
 	static double demoFilesSize = 0L;
 	static double demoFilesSizeInGb;
+	static int demoAmountForConfirm;
 
 	public static void demoScanner(String csgoPathString) {
 
@@ -39,11 +40,11 @@ public class Move {
 			}
 		}
 		demoFilesSizeInGb = (((demoFilesSize / 1024) / 1024) / 1024);
-		infoForConfirm= new String(demoFilesScanned.length + " Demos found, which are using \n "
+		infoForConfirm= new String(demoFilesScanned.length + " Demos found, which are using \n"
 				+ round(demoFilesSizeInGb, 2) + " GB of Storage");
 		
 		System.out.println(demoFilesScanned.length + " Demos found, which are using ");
-
+demoAmountForConfirm = demoFilesScanned.length;
 		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
 
 	}

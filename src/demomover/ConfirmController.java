@@ -25,35 +25,57 @@ import javafx.stage.WindowEvent;
 import sun.print.resources.serviceui;
 
 public class ConfirmController {
-	// TODO make that you can only click  only this window 
+	// TODO make that you can only click only this window
 	@FXML
-	private  Label moveInfos;
+	private Label moveInfos;
 	@FXML
 	private Button yesButton;
 	@FXML
 	private Button noButton;
 	@FXML
-	static  ProgressBar loadingBar;
+	static ProgressBar loadingBar;
 	@FXML
 	private Label wantToContinue;
-	
-	 public void initialize(){
-		
+
+	public void initialize() {
+
 		moveInfos.setText(Move.infoForConfirm);
-	    }
+		System.out.println("demonumber" + Move.demoAmountForConfirm);
+		if (Move.demoAmountForConfirm == 0) { // check if demos are found
+			yesButton.setDisable(true);
+		} else {
+			yesButton.setDisable(false);
+		}
 
 	
-	
+	}
+
 	@FXML
 	void letsGo(ActionEvent event) {
 		System.out.println("lETSSEEE GOO");
-	//ConfirmController.loadingBar.setProgress(0.5); //test
-		//TODO make progressbar work 
-		
+		// ConfirmController.loadingBar.setProgress(0.5); //test
+		// TODO make progressbar work
+		Thread loadingBarThread = new Thread() {
+			public void run() {
+				try { //TODO make thread update it, immo just dummy
+					System.out.println("Does it work?");
+
+					Thread.sleep(1000);
+
+					System.out.println("Nope, it doesnt...again.");
+				} catch (InterruptedException v) {
+					System.out.println(v);
+				}
+			}
+		};
+		loadingBarThread.start();
+
 	}
 
 	@FXML
 	void noAction(ActionEvent event) {
 		System.out.println("abort mission");
+		Stage stage = (Stage) noButton.getScene().getWindow();
+		stage.close();
 	}
 }
