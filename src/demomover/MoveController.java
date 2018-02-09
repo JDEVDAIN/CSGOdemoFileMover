@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,9 +15,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
-public class moveController {
+public class MoveController {
+	static Stage confirmStage;
 	File selectedCsgoDirectory;
 	File selectedTargetDirectory;
 	@FXML
@@ -27,7 +32,7 @@ public class moveController {
 	private Button startButton;
 	@FXML
 	private Button informationButton;
-	
+
 	@FXML
 	void chooseCsgoDir(ActionEvent event) {
 
@@ -64,7 +69,7 @@ public class moveController {
 		if (selectedTargetDirectory == null) {
 			targetDirLabel.setText("No Directory selected");
 		} else {
-		targetDirLabel.setText(selectedTargetDirectory.getAbsolutePath());
+			targetDirLabel.setText(selectedTargetDirectory.getAbsolutePath());
 
 		}
 		if (selectedCsgoDirectory != null && selectedTargetDirectory != null) {
@@ -76,8 +81,8 @@ public class moveController {
 
 	@FXML
 	void showInformation(ActionEvent event) {
-		//works
-		//TODO styling 
+		// works
+		// TODO styling
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText("Look, an Information Dialog");
@@ -85,22 +90,24 @@ public class moveController {
 
 		alert.showAndWait();
 	}
-	@FXML //startbutton
+
+	@FXML // startbutton
 	void move(ActionEvent event) throws IOException {
 		Move.demoScanner(selectedCsgoDirectory.toString());
 		System.out.println("DONE");
-		 Stage stage = new Stage();
-         stage.setTitle("Continue?");
-         
-         
-         AnchorPane mainAnchorPane = (AnchorPane) FXMLLoader.load(MoverFxGui.class.getResource("moveConfirm.fxml"));
-         stage.setScene(new Scene(mainAnchorPane, 283, 155)); //TODO check for borders
-      //   ConfirmController.moveInfo.setText(Move.infoForConfirm); //TODO doesnt work make it work
-         System.out.println(Move.infoForConfirm);
-         stage.show();
-		
-	//System.out.println(Move.demoFilesScanned.length);
-	//	Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString()); //TODO move in right class 
+		Stage confirmStage = new Stage();
+		confirmStage.setTitle("Continue?");
+		confirmStage.setResizable(false);
+		confirmStage.initModality(Modality.APPLICATION_MODAL);
+
+		AnchorPane mainAnchorPane = (AnchorPane) FXMLLoader.load(MoverFxGui.class.getResource("moveConfirm.fxml"));
+		confirmStage.setScene(new Scene(mainAnchorPane, 283, 155));
+		System.out.println(Move.infoForConfirm);
+
+		confirmStage.showAndWait();
+		// System.out.println(Move.demoFilesScanned.length);
+		// Move.demoMover(selectedCsgoDirectory.toString(),
+		// selectedTargetDirectory.toString()); //TODO move in right class
 
 	}
 

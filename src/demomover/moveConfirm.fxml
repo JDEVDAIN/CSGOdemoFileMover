@@ -28,7 +28,7 @@
                         <DropShadow color="#2e3c22" height="25.0" radius="12.0" spread="0.39" width="25.0" />
                      </effect>
                   </Button>
-                  <Label fx:id="moveInfo" alignment="TOP_LEFT" layoutX="11.0" layoutY="15.0" prefHeight="57.0" prefWidth="261.0" style="-fx-background-color: #242c3a;" text="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST " textFill="#a1a1a1" wrapText="true">
+                  <Label fx:id="moveInfos" alignment="TOP_LEFT" layoutX="11.0" layoutY="15.0" prefHeight="57.0" prefWidth="261.0" style="-fx-background-color: #242c3a;" text="TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST " textFill="#a1a1a1" wrapText="true">
                      <effect>
                         <InnerShadow height="9.0" radius="3.25" width="6.0" />
                      </effect>
