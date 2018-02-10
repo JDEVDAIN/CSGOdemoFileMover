@@ -47,7 +47,6 @@ public class ConfirmController {
 			yesButton.setDisable(false);
 		}
 
-	
 	}
 
 	@FXML
@@ -57,17 +56,22 @@ public class ConfirmController {
 		// TODO make progressbar work
 		Thread loadingBarThread = new Thread() {
 			public void run() {
-				try { //TODO make thread update it, immo just dummy
-					System.out.println("Does it work?");
 
-					Thread.sleep(1000);
-
-					System.out.println("Nope, it doesnt...again.");
-				} catch (InterruptedException v) {
-					System.out.println(v);
+				int test = 0;
+				for (;;) {
+					test++;
+					System.out.println(test);
+					//TODO
+					try {
+						sleep(800);
+					} catch (Exception e) {
+						// TODO: handle exception
+					}
 				}
+
 			}
 		};
+		
 		loadingBarThread.start();
 
 	}

@@ -14,6 +14,7 @@ public class Move {
 	static double demoFilesSize = 0L;
 	static double demoFilesSizeInGb;
 	static int demoAmountForConfirm;
+	static int moveCounter; //used for progressbar
 
 	public static void demoScanner(String csgoPathString) {
 
@@ -72,6 +73,7 @@ demoAmountForConfirm = demoFilesScanned.length;
 				System.out.println("to be moved:  " + file.getCanonicalPath());
 
 				file.renameTo(new File(targetPathString, file.getName()));
+				moveCounter++;
 				System.out.println("moved:  " + file.getCanonicalPath());
 
 			} catch (IOException e) {
