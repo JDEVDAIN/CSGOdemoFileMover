@@ -58,10 +58,17 @@ public class ConfirmController {
 			public void run() {
 
 				int test = 0;
-				for (;;) {
-					test++;
+				for (int testo = 0; testo < Move.demoAmountForConfirm; testo++) {
+
 					System.out.println(test);
-					//TODO
+					test = Move.moveCounter;
+					System.out.println(test);
+					//TODO MATHEMATIK immo anzahl der demos = setwert aber, Anzahl in Prozent und dann auf set also 1 ist 100
+					Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
+							MoveController.selectedTargetDirectory.toString());
+					loadingBar.setProgress(test);
+					
+
 					try {
 						sleep(800);
 					} catch (Exception e) {
@@ -71,7 +78,7 @@ public class ConfirmController {
 
 			}
 		};
-		
+
 		loadingBarThread.start();
 
 	}

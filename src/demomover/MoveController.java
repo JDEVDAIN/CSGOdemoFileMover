@@ -22,8 +22,8 @@ import javafx.stage.WindowEvent;
 
 public class MoveController {
 	static Stage confirmStage;
-	File selectedCsgoDirectory;
-	File selectedTargetDirectory;
+	static File selectedCsgoDirectory;
+	static File selectedTargetDirectory;
 	@FXML
 	private Label targetDirLabel;
 	@FXML
@@ -106,8 +106,8 @@ public class MoveController {
 
 		confirmStage.showAndWait();
 		// System.out.println(Move.demoFilesScanned.length);
-		// Move.demoMover(selectedCsgoDirectory.toString(),
-		// selectedTargetDirectory.toString()); //TODO move in right class
+		Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString()); // TODO move in right
+																								// class
 
 	}
 
