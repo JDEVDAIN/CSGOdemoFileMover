@@ -6,7 +6,11 @@ import javafx.scene.control.ProgressBar;
 
 import java.io.Console;
 
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import com.sun.org.apache.xerces.internal.dom.AbortException;
+import com.sun.xml.internal.ws.api.server.SDDocument;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -33,7 +37,7 @@ public class ConfirmController {
 	@FXML
 	private Button noButton;
 	@FXML
-	static ProgressBar loadingBar;
+	private ProgressBar loadingBar;
 	@FXML
 	private Label wantToContinue;
 
@@ -41,46 +45,50 @@ public class ConfirmController {
 
 		moveInfos.setText(Move.infoForConfirm);
 		System.out.println("demonumber" + Move.demoAmountForConfirm);
+		loadingBar.setProgress(0.51);
 		if (Move.demoAmountForConfirm == 0) { // check if demos are found
 			yesButton.setDisable(true);
 		} else {
 			yesButton.setDisable(false);
 		}
 
+		Thread loadingBarThread = new Thread() {
+			public void run() {
+				while (Move.moveCounter != Move.demoAmountForConfirm) {
+
+					double test = 0;
+					double demoPercentValue = 100 / Move.demoAmountForConfirm;
+					System.out.println("demoamounfforconfirm   " + Move.demoAmountForConfirm);
+
+					test = (Move.moveCounter * demoPercentValue) / 100;
+					System.out.println("value set for demo:" + test);
+					System.out.println("movecounter: " + Move.moveCounter + "        demoamount for confirm: "
+							+ Move.demoAmountForConfirm);
+					// TODO MATHEMATIK immo anzahl der demos = setwert aber, Anzahl in Prozent und
+					// dann auf set also 1 ist 100
+
+					loadingBar.setProgress(test);
+
+					try {
+						sleep(5000);
+					} catch (InterruptedException e) {
+					}
+				}
+			}
+
+		};
+
+		loadingBarThread.start();
 	}
 
 	@FXML
 	void letsGo(ActionEvent event) {
 		System.out.println("lETSSEEE GOO");
-		// ConfirmController.loadingBar.setProgress(0.5); //test
-		// TODO make progressbar work
-		Thread loadingBarThread = new Thread() {
-			public void run() {
 
-				int test = 0;
-				for (int testo = 0; testo < Move.demoAmountForConfirm; testo++) {
-
-					System.out.println(test);
-					test = Move.moveCounter;
-					System.out.println(test);
-					//TODO MATHEMATIK immo anzahl der demos = setwert aber, Anzahl in Prozent und dann auf set also 1 ist 100
-					Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
-							MoveController.selectedTargetDirectory.toString());
-					loadingBar.setProgress(test);
-					
-
-					try {
-						sleep(800);
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
-				}
-
-			}
-		};
-
-		loadingBarThread.start();
-
+//TODO surround with thread
+		Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
+				MoveController.selectedTargetDirectory.toString());
+		loadingBar.setProgress(1);
 	}
 
 	@FXML
