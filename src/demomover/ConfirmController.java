@@ -4,14 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 
-import java.io.Console;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-import com.sun.org.apache.xerces.internal.dom.AbortException;
-import com.sun.xml.internal.ws.api.server.SDDocument;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,7 +21,7 @@ import javafx.stage.WindowEvent;
 import sun.print.resources.serviceui;
 
 public class ConfirmController {
-	// TODO make that you can only click only this window
+
 	@FXML
 	private Label moveInfos;
 	@FXML
@@ -45,7 +37,6 @@ public class ConfirmController {
 
 		moveInfos.setText(Move.infoForConfirm);
 		System.out.println("demonumber" + Move.demoAmountForConfirm);
-		loadingBar.setProgress(0.51);
 		if (Move.demoAmountForConfirm == 0) { // check if demos are found
 			yesButton.setDisable(true);
 		} else {
@@ -57,23 +48,26 @@ public class ConfirmController {
 				while (Move.moveCounter != Move.demoAmountForConfirm) {
 
 					double test = 0;
-					double demoPercentValue = 100 / Move.demoAmountForConfirm;
+					double demoPercentValue = 0;
+					demoPercentValue = 100 / Move.demoAmountForConfirm;
 					System.out.println("demoamounfforconfirm   " + Move.demoAmountForConfirm);
 
 					test = (Move.moveCounter * demoPercentValue) / 100;
 					System.out.println("value set for demo:" + test);
 					System.out.println("movecounter: " + Move.moveCounter + "        demoamount for confirm: "
 							+ Move.demoAmountForConfirm);
-					// TODO MATHEMATIK immo anzahl der demos = setwert aber, Anzahl in Prozent und
-					// dann auf set also 1 ist 100
+		
 
 					loadingBar.setProgress(test);
 
 					try {
-						sleep(5000);
-					} catch (InterruptedException e) {
+						sleep(800);
+					} catch (Exception e) {
+						// TODO: handle exception
 					}
+
 				}
+
 			}
 
 		};
@@ -85,15 +79,25 @@ public class ConfirmController {
 	void letsGo(ActionEvent event) {
 		System.out.println("lETSSEEE GOO");
 
-//TODO surround with thread
-		Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
-				MoveController.selectedTargetDirectory.toString());
-		loadingBar.setProgress(1);
+		// TODO surround with thread
+		Thread moverThread = new Thread() {
+			public void run() {
+				Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
+						MoveController.selectedTargetDirectory.toString());
+				loadingBar.setProgress(1);
+
+			}
+
+		};
+
+		moverThread.start();
 	}
 
 	@FXML
 	void noAction(ActionEvent event) {
 		System.out.println("abort mission");
+		Move.demoAmountForConfirm = 0; //resets
+		Move.moveCounter = 0; //resets
 		Stage stage = (Stage) noButton.getScene().getWindow();
 		stage.close();
 	}

@@ -105,9 +105,8 @@ public class MoveController {
 		System.out.println(Move.infoForConfirm);
 
 		confirmStage.showAndWait();
-		// System.out.println(Move.demoFilesScanned.length);
-		Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString()); // TODO move in right
-																								// class
+		Move.demoFilesSize = 0; //rest der size
+		
 
 	}
 

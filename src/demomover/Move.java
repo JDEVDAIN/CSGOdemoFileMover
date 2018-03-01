@@ -47,7 +47,7 @@ public class Move {
 		System.out.println(demoFilesScanned.length + " Demos found, which are using ");
 demoAmountForConfirm = demoFilesScanned.length;
 		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
-
+		
 	}
 
 	public static void demoMover(String csgoPathString, String targetPathString) {
