@@ -84,9 +84,10 @@ public class MoveController {
 		// works
 		// TODO styling
 		Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle("Information Dialog");
-		alert.setHeaderText("Look, an Information Dialog");
-		alert.setContentText("I have a great message for you!");
+		alert.setTitle("Informations");
+		alert.setHeaderText("Where are my Demos saved?");
+		alert.setContentText("Demos are saved in your csgo Folder: \nSteam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo"
+				+ " \n\nA full Match .dem File is ~200 MB");
 
 		alert.showAndWait();
 	}
