@@ -12,9 +12,9 @@ public class Move {
 	static String infoForConfirm;
 	static File[] demoFilesScanned;
 	static double demoFilesSize = 0L;
-	static double demoFilesSizeInGb;
+	static double demoFilesSizeInGb = 0L;
 	static int demoAmountForConfirm;
-	static int moveCounter; //used for progressbar
+	static int moveCounter; // used for progressbar
 
 	public static void demoScanner(String csgoPathString) {
 
@@ -41,13 +41,13 @@ public class Move {
 			}
 		}
 		demoFilesSizeInGb = (((demoFilesSize / 1024) / 1024) / 1024);
-		infoForConfirm= new String(demoFilesScanned.length + " Demos found, which are using \n"
+		infoForConfirm = new String(demoFilesScanned.length + " Demos found, which are using \n"
 				+ round(demoFilesSizeInGb, 2) + " GB of Storage");
-		
-		System.out.println(demoFilesScanned.length + " Demos found, which are using ");
-demoAmountForConfirm = demoFilesScanned.length;
-		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
 
+		System.out.println(demoFilesScanned.length + " Demos found, which are using ");
+		demoAmountForConfirm = demoFilesScanned.length;
+		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
+		demoFilesSize = 0L;
 	}
 
 	public static void demoMover(String csgoPathString, String targetPathString) {

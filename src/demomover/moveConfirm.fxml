@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="154.0" prefWidth="283.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demomover.ConfirmController">
+<AnchorPane prefHeight="151.0" prefWidth="285.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="demomover.ConfirmController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="156.0" prefWidth="283.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="164.0" prefWidth="286.0">
         <children>
-          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="159.0" prefWidth="283.0" style="-fx-background-color: #1a1f2d;" VBox.vgrow="ALWAYS">
+          <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="164.0" prefWidth="291.0" style="-fx-background-color: #1a1f2d;" VBox.vgrow="ALWAYS">
             <children>
                   <Button fx:id="yesButton" layoutX="157.0" layoutY="115.0" mnemonicParsing="false" onAction="#letsGo" prefHeight="33.0" prefWidth="51.0" style="-fx-background-color: #265b36;" text="Yes" textFill="#bfbfbf" underline="true">
                      <font>
@@ -61,4 +61,7 @@
         </children>
       </VBox>
    </children>
+   <effect>
+      <DropShadow blurType="TWO_PASS_BOX" height="30.0" radius="14.5" spread="0.08" width="30.0" />
+   </effect>
 </AnchorPane>

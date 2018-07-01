@@ -14,11 +14,15 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.GaussianBlur;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+
+import demomover.MoverFxGui;
 
 public class MoveController {
 	static Stage confirmStage;
@@ -32,6 +36,8 @@ public class MoveController {
 	private Button startButton;
 	@FXML
 	private Button informationButton;
+
+	public boolean isConfirmWindowOpen;
 
 	@FXML
 	void chooseCsgoDir(ActionEvent event) {
@@ -86,8 +92,9 @@ public class MoveController {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Informations");
 		alert.setHeaderText("Where are my Demos saved?");
-		alert.setContentText("Demos are saved in your csgo Folder: \nSteam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo"
-				+ " \n\nA full Match .dem File is ~200 MB");
+		alert.setContentText(
+				"Demos are saved in your csgo Folder: \nSteam\\steamapps\\common\\Counter-Strike Global Offensive\\csgo"
+						+ " \n\nA full Match .dem File is ~200 MB");
 
 		alert.showAndWait();
 	}
@@ -104,11 +111,19 @@ public class MoveController {
 		AnchorPane mainAnchorPane = (AnchorPane) FXMLLoader.load(MoverFxGui.class.getResource("moveConfirm.fxml"));
 		confirmStage.setScene(new Scene(mainAnchorPane, 283, 155));
 		System.out.println(Move.infoForConfirm);
-
+		isConfirmWindowOpen = true;
+		Stage moveStage = (Stage) targetDirLabel.getScene().getWindow(); 
+		
+	
+	  moveStage.setOpacity(0.96);
+		
 		confirmStage.showAndWait();
+		isConfirmWindowOpen = false;
+		 moveStage.setOpacity(1);
 		// System.out.println(Move.demoFilesScanned.length);
-		Move.demoMover(selectedCsgoDirectory.toString(), selectedTargetDirectory.toString()); // TODO move in right
-																								// class
+		// Move.demoMover(selectedCsgoDirectory.toString(),
+		// selectedTargetDirectory.toString()); // TODO move in right
+		// class
 
 	}
 

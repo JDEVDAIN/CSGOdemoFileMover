@@ -9,13 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-
 public class MoverFxGui extends Application {
-	static Stage primaryStage;
+	public static Stage primaryStage;
 
+	public static void main(String[] args) {
 
-	public static void main(String[] args) {		
-		
 		launch(args);
 	}
 
@@ -25,7 +23,7 @@ public class MoverFxGui extends Application {
 		primaryStage.setScene(new Scene(mainAnchorPane));
 		primaryStage.setResizable(false);
 		primaryStage.setTitle("CSGODemoMover");
-		
+
 		primaryStage.show();
 
 	}

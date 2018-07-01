@@ -54,33 +54,40 @@ public class ConfirmController {
 		System.out.println("lETSSEEE GOO");
 		// ConfirmController.loadingBar.setProgress(0.5); //test
 		// TODO make progressbar work
-		Thread loadingBarThread = new Thread() {
+		Thread moverThread = new Thread() {
 			public void run() {
+				Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
+						MoveController.selectedTargetDirectory.toString());
 
-				int test = 0;
-				for (int testo = 0; testo < Move.demoAmountForConfirm; testo++) {
-
-					System.out.println(test);
-					test = Move.moveCounter;
-					System.out.println(test);
-					//TODO MATHEMATIK immo anzahl der demos = setwert aber, Anzahl in Prozent und dann auf set also 1 ist 100
-					Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
-							MoveController.selectedTargetDirectory.toString());
-					loadingBar.setProgress(test);
-					
-
-					try {
-						sleep(800);
-					} catch (Exception e) {
-						// TODO: handle exception
-					}
+				try {
+					sleep(800);
+				} catch (Exception e) {
+					// TODO: handle exception
 				}
-
 			}
+
 		};
 
-		loadingBarThread.start();
+		moverThread.start();
 
+		Thread closeThread = new Thread() {
+			public void run() {
+				Stage stage = (Stage) yesButton.getScene().getWindow();
+
+				stage.setOnCloseRequest((WindowEvent event1) -> {
+					moverThread.stop();
+					System.out.println("thread killed");
+				});
+
+				try {
+					sleep(800);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+			}
+
+		};
+closeThread.start();
 	}
 
 	@FXML
