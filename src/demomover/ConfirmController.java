@@ -33,7 +33,7 @@ public class ConfirmController {
 	@FXML
 	private Button noButton;
 	@FXML
-	static ProgressBar loadingBar;
+	private ProgressBar loadingBar;
 	@FXML
 	private Label wantToContinue;
 
@@ -46,19 +46,19 @@ public class ConfirmController {
 		} else {
 			yesButton.setDisable(false);
 		}
-
 	}
 
 	@FXML
 	void letsGo(ActionEvent event) {
 		System.out.println("lETSSEEE GOO");
+		yesButton.setDisable(true);
 		// ConfirmController.loadingBar.setProgress(0.5); //test
 		// TODO make progressbar work
 		Thread moverThread = new Thread() {
 			public void run() {
 				Move.demoMover(MoveController.selectedCsgoDirectory.toString(),
 						MoveController.selectedTargetDirectory.toString());
-
+				loadingBar.setProgress(1);
 				try {
 					sleep(800);
 				} catch (Exception e) {
@@ -70,13 +70,24 @@ public class ConfirmController {
 
 		moverThread.start();
 
+		Thread progressThread = new Thread() {
+			public void run() {
+				while (true) {
+					loadingBar.setProgress(Move.moveProgressCounter);
+				}
+
+			}
+		};
+		progressThread.start();
+
 		Thread closeThread = new Thread() {
 			public void run() {
 				Stage stage = (Stage) yesButton.getScene().getWindow();
 
 				stage.setOnCloseRequest((WindowEvent event1) -> {
 					moverThread.stop();
-					System.out.println("thread killed");
+					progressThread.stop();
+					System.out.println("closethread killed");
 				});
 
 				try {
@@ -87,7 +98,8 @@ public class ConfirmController {
 			}
 
 		};
-closeThread.start();
+		closeThread.start();
+
 	}
 
 	@FXML

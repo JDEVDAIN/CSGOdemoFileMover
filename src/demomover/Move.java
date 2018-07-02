@@ -14,7 +14,8 @@ public class Move {
 	static double demoFilesSize = 0L;
 	static double demoFilesSizeInGb = 0L;
 	static int demoAmountForConfirm;
-	static int moveCounter; // used for progressbar
+	static int moveCounter = 0; // used for progressbar
+	static double moveProgressCounter = 0;
 
 	public static void demoScanner(String csgoPathString) {
 
@@ -48,10 +49,12 @@ public class Move {
 		demoAmountForConfirm = demoFilesScanned.length;
 		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
 		demoFilesSize = 0L;
+		
+		numberOfDemoFiles = demoFilesScanned.length;
 	}
 
 	public static void demoMover(String csgoPathString, String targetPathString) {
-
+		moveCounter = 0;
 		File csgofolder = new File(csgoPathString); // redundant, can be cleaned
 		FilenameFilter demFilter = new FilenameFilter() {
 			@Override
@@ -73,7 +76,13 @@ public class Move {
 				System.out.println("to be moved:  " + file.getCanonicalPath());
 
 				file.renameTo(new File(targetPathString, file.getName()));
+				double total = 100 / numberOfDemoFiles; //used for progressbar value
+				total /= 100; //used for progressbar, max value is 1
 				moveCounter++;
+				moveProgressCounter = moveCounter * total;
+			
+				System.out.println(numberOfDemoFiles);
+				System.out.println( total +"movecounter " + moveProgressCounter);
 				System.out.println("moved:  " + file.getCanonicalPath());
 
 			} catch (IOException e) {
@@ -82,6 +91,7 @@ public class Move {
 			}
 		}
 		System.out.println("Done with moving .dem files");
+		System.out.println("final movecounternumber " + moveCounter);
 	}
 
 	public static double round(double value, int places) {
