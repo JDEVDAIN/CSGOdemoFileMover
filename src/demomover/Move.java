@@ -37,7 +37,7 @@ public class Move {
 			try {
 				System.out.println("  " + file.getCanonicalPath());
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+
 				e.printStackTrace();
 			}
 		}

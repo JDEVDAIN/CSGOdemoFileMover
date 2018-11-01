@@ -25,7 +25,6 @@ import javafx.stage.WindowEvent;
 import sun.print.resources.serviceui;
 
 public class ConfirmController {
-	// TODO make that you can only click only this window
 	@FXML
 	private Label moveInfos;
 	@FXML
@@ -52,8 +51,7 @@ public class ConfirmController {
 	void letsGo(ActionEvent event) {
 		System.out.println("lETSSEEE GOO");
 		yesButton.setDisable(true);
-		// ConfirmController.loadingBar.setProgress(0.5); //test
-		// TODO make progressbar work
+
 		Thread moverThread = new Thread() {
 			public void run() {
 				Move.demoMover(MoveController.selectedCsgoDirectory.toString(),

@@ -87,8 +87,7 @@ public class MoveController {
 
 	@FXML
 	void showInformation(ActionEvent event) {
-		// works
-		// TODO styling
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Informations");
 		alert.setHeaderText("Where are my Demos saved?");
@@ -120,10 +119,7 @@ public class MoveController {
 		confirmStage.showAndWait();
 		isConfirmWindowOpen = false;
 		 moveStage.setOpacity(1);
-		// System.out.println(Move.demoFilesScanned.length);
-		// Move.demoMover(selectedCsgoDirectory.toString(),
-		// selectedTargetDirectory.toString()); // TODO move in right
-		// class
+
 
 	}
 
