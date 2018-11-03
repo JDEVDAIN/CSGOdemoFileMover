@@ -49,7 +49,7 @@ public class Move {
 		demoAmountForConfirm = demoFilesScanned.length;
 		System.out.println(round(demoFilesSizeInGb, 2) + " GB of Storage"); // rounded now
 		demoFilesSize = 0L;
-		
+
 		numberOfDemoFiles = demoFilesScanned.length;
 	}
 
@@ -76,13 +76,16 @@ public class Move {
 				System.out.println("to be moved:  " + file.getCanonicalPath());
 
 				file.renameTo(new File(targetPathString, file.getName()));
-				double total = 100 / numberOfDemoFiles; //used for progressbar value
-				total /= 100; //used for progressbar, max value is 1
+				double total = 100 / numberOfDemoFiles; // used for progressbar value
+				total /= 100; // used for progressbar, max value is 1
+
 				moveCounter++;
 				moveProgressCounter = moveCounter * total;
-			
+				
+
+
 				System.out.println(numberOfDemoFiles);
-				System.out.println( total +"movecounter " + moveProgressCounter);
+				System.out.println(total + "movecounter " + moveProgressCounter);
 				System.out.println("moved:  " + file.getCanonicalPath());
 
 			} catch (IOException e) {
@@ -91,6 +94,7 @@ public class Move {
 			}
 		}
 		System.out.println("Done with moving .dem files");
+		moveProgressCounter = 1; //sets progressbar at 100  when  
 		System.out.println("final movecounternumber " + moveCounter);
 	}
 
